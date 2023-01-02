@@ -1,2 +1,2 @@
-# CGEIHC_03_06-2023
- Proyecto CG03_Equipo06
+# CGEIHC_08_LVAD
+ proyecto final de CG
