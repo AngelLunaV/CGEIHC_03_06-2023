@@ -119,6 +119,11 @@ float	pez1X = 66.0f,
 		pez5Y = 14.0f,
 		pez5Z = 21.0f,
 		pez5R = 0.0f,
+
+		pezAzulX = -49.0f,
+		pezAzulY = 25.0f,
+		pezAzulZ = 21.0f,
+		pezAzulR = 0.0f,
 	
 		pez6X = -76.0f,
 		pez6Y = 34.0f,
@@ -867,6 +872,9 @@ int main()
 	ModelAnim tortuga("resources/objects/ObjetosA/Tortuga/Turtle.fbx");
 	tortuga.initShaders(animShader.ID);
 
+	ModelAnim pezAzul("resources/objects/ObjetosL/Fish_blue.fbx");
+	pezAzul.initShaders(animShader.ID);
+
 	//leer archivo
 	string sharkfps = "FPS/shark.txt";
 	ifstream archivo(sharkfps.c_str());
@@ -1173,6 +1181,12 @@ int main()
 		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
 		pez4.Draw(animShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezAzulX, pezAzulY, pezAzulZ)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		pezAzul.Draw(animShader);
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(pez6X, pez6Y, pez6Z)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(1.0f));	// it's a bit too big for our scene, so scale it down
