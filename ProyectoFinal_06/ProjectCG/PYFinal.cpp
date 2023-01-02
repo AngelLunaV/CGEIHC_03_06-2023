@@ -857,6 +857,7 @@ int main()
 	Model octoT7("resources/objects/ObjetosA/pulpo/tentaculo7.obj");
 	Model octoT8("resources/objects/ObjetosA/pulpo/tentaculo8.obj");
 
+	//Peces
 	ModelAnim pez1("resources/objects/ObjetosA/fish/Pez1/the_fish.fbx");
 	pez1.initShaders(animShader.ID);
 
@@ -874,6 +875,21 @@ int main()
 
 	ModelAnim pezAzul("resources/objects/ObjetosL/Fish_blue.fbx");
 	pezAzul.initShaders(animShader.ID);
+
+	ModelAnim pezAzul2("resources/objects/ObjetosL/Fish_blue.fbx");
+	pezAzul2.initShaders(animShader.ID);
+
+	ModelAnim pezColores("resources/objects/ObjetosL/Fish_blue.fbx");
+	pezColores.initShaders(animShader.ID);
+
+	ModelAnim pezOrange("resources/objects/ObjetosL/Fish_blue.fbx");
+	pezOrange.initShaders(animShader.ID);
+
+	ModelAnim pezYellow("resources/objects/ObjetosL/Fish_blue.fbx");
+	pezYellow.initShaders(animShader.ID);
+
+	ModelAnim pezYellow2("resources/objects/ObjetosL/Fish_blue.fbx");
+	pezYellow2.initShaders(animShader.ID);
 
 	//leer archivo
 	string sharkfps = "FPS/shark.txt";
