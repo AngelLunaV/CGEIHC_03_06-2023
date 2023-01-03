@@ -1,0 +1,103 @@
+# 3ds Max Wavefront OBJ Exporter v0.99 - (c)2007 guruware
+# File Created: 02.01.2023 23:45:44
+
+newmtl aquarium_treasure_chest_stone_yellow
+	Kd 0.7961 0.5765 0.1922
+	Ks 0.6750 0.6750 0.6750
+	Tr 0.0000
+	d 1.0000
+	Tf 1.0000 1.0000 1.0000
+	Pr 0.2500
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+
+newmtl aquarium_treasure_chest_stone_green
+	Kd 0.0392 0.4235 0.0863
+	Ks 0.5670 0.5670 0.5670
+	Tr 0.0000
+	d 1.0000
+	Tf 1.0000 1.0000 1.0000
+	Pr 0.2500
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+
+newmtl aquarium_treasure_chest_pearl
+	Kd 0.9098 0.9098 0.9098
+	Ks 0.5850 0.5850 0.5850
+	Tr 0.0000
+	d 1.0000
+	Tf 1.0000 1.0000 1.0000
+	Pr 0.4500
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+
+newmtl aquarium_treasure_chest_stone_red
+	Kd 0.5529 0.0000 0.0000
+	Ks 0.4500 0.4500 0.4500
+	Tr 0.0000
+	d 1.0000
+	Tf 1.0000 1.0000 1.0000
+	Pr 0.2500
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+
+newmtl aquarium_treasure_chest
+	Kd 0.9490 0.9412 0.9412
+	Ks 0.2700 0.2700 0.2700
+	Tr 0.0000
+	d 1.0000
+	Tf 1.0000 1.0000 1.0000
+	Pr 0.6000
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd aquarium_treasure_chest_diffuse.jpg
+
+newmtl Material__2
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.8820 0.8820 0.8820
+	Tr 0.0000
+	d 1.0000
+	Tf 1.0000 1.0000 1.0000
+	Pr 0.3000
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd aquarium_treasure_chest_diffuse.jpg
+
+newmtl aquarium_treasure_chest_metal
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.5400 0.5400 0.5400
+	Tr 0.0000
+	d 1.0000
+	Tf 1.0000 1.0000 1.0000
+	Pr 0.4500
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd aquarium_treasure_chest_diffuse.jpg
