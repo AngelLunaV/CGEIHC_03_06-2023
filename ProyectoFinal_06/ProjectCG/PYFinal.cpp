@@ -124,6 +124,31 @@ float	pez1X = 66.0f,
 		pezAzulY = 25.0f,
 		pezAzulZ = 21.0f,
 		pezAzulR = 0.0f,
+
+		pezAzul2X = -80.0f,
+		pezAzul2Y = 30.0f,
+		pezAzul2Z = 60.0f,
+		pezAzul2R = 0.0f,
+
+		pezColoresX = -40.0f,
+		pezColoresY = 16.0f,
+		pezColoresZ = 80.0f,
+		pezColoresR = 0.0f,
+
+		pezOrangeX = -49.0f,
+		pezOrangeY = 10.0f,
+		pezOrangeZ = 35.0f,
+		pezOrangeR = 0.0f,
+
+		pezYellowX = -60.0f,
+		pezYellowY = 10.0f,
+		pezYellowZ = 60.0f,
+		pezYellowR = 0.0f,
+
+		pezYellow2X = -80.0f,
+		pezYellow2Y = 25.0f,
+		pezYellow2Z = 80.0f,
+		pezYellow2R = 0.0f,
 	
 		pez6X = -76.0f,
 		pez6Y = 34.0f,
@@ -876,19 +901,19 @@ int main()
 	ModelAnim pezAzul("resources/objects/ObjetosL/Fish_blue.fbx");
 	pezAzul.initShaders(animShader.ID);
 
-	ModelAnim pezAzul2("resources/objects/ObjetosL/Fish_blue.fbx");
+	ModelAnim pezAzul2("resources/objects/ObjetosL/Fish_blue_2.fbx");
 	pezAzul2.initShaders(animShader.ID);
 
-	ModelAnim pezColores("resources/objects/ObjetosL/Fish_blue.fbx");
+	ModelAnim pezColores("resources/objects/ObjetosL/Fish_colors.fbx");
 	pezColores.initShaders(animShader.ID);
 
-	ModelAnim pezOrange("resources/objects/ObjetosL/Fish_blue.fbx");
+	ModelAnim pezOrange("resources/objects/ObjetosL/Fish_orange.fbx");
 	pezOrange.initShaders(animShader.ID);
 
-	ModelAnim pezYellow("resources/objects/ObjetosL/Fish_blue.fbx");
+	ModelAnim pezYellow("resources/objects/ObjetosL/Fish_yellow.fbx");
 	pezYellow.initShaders(animShader.ID);
 
-	ModelAnim pezYellow2("resources/objects/ObjetosL/Fish_blue.fbx");
+	ModelAnim pezYellow2("resources/objects/ObjetosL/Fish_yellow_2.fbx");
 	pezYellow2.initShaders(animShader.ID);
 
 	//leer archivo
@@ -1204,6 +1229,36 @@ int main()
 		animShader.setMat4("model", model);
 		pezAzul.Draw(animShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezAzul2X, pezAzul2Y, pezAzul2Z)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		pezAzul2.Draw(animShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezColoresX, pezColoresY, pezColoresZ)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		pezColores.Draw(animShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezOrangeX, pezOrangeY, pezOrangeZ)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		pezOrange.Draw(animShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezYellowX, pezYellowY, pezYellowZ)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		pezYellow.Draw(animShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezYellow2X, pezYellow2Y, pezYellow2Z)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		pezYellow2.Draw(animShader);
+
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(pez6X, pez6Y, pez6Z)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(1.0f));	// it's a bit too big for our scene, so scale it down
 		model = glm::rotate(model, glm::radians(pez6R), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1301,6 +1356,7 @@ int main()
 		model = glm::scale(model, glm::vec3(0.2f));
 		staticShader.setMat4("model", model);
 		peceraT2.Draw(staticShader);
+		
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Shark
 		// -------------------------------------------------------------------------------------------------------------------------
