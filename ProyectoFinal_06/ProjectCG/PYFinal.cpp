@@ -919,6 +919,9 @@ int main()
 	//Banca
 	Model banca1("resources/objects/ObjetosA/Banca/banca.obj");
 
+	//Banca
+	Model carrito("resources/objects/ObjetosL/Carrito/carrito.obj");
+
 	//leer archivo
 	string sharkfps = "FPS/shark.txt";
 	ifstream archivo(sharkfps.c_str());
@@ -1490,6 +1493,18 @@ int main()
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		banca1.Draw(staticShader);
+
+		//Carrito de comida
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(250.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f));
+		staticShader.setMat4("model", model);
+		carrito.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-250.0f, 0.0f, -250.0f));
+		model = glm::scale(model, glm::vec3(0.5f));
+		staticShader.setMat4("model", model);
+		carrito.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Octopus
