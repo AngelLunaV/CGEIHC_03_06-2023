@@ -178,7 +178,11 @@ float	pez1X = 66.0f,
 		torX = -43.0f,
 		torY = 30.0f,
 		torZ = 25.0f,
-		torR = 0.0f;
+		torR = 0.0f,
+
+		carX = -300.0f,
+		carY = 19.0f,
+		carZ = 0.0f;
 
 float	posx = 0.0f,
 		posy = 0.0f,
@@ -916,6 +920,9 @@ int main()
 	ModelAnim pezYellow2("resources/objects/ObjetosL/Fish_yellow_2.fbx");
 	pezYellow2.initShaders(animShader.ID);
 
+	//Banca
+	Model banca1("resources/objects/ObjetosA/Banca/banca.obj");
+
 	//leer archivo
 	string sharkfps = "FPS/shark.txt";
 	ifstream archivo(sharkfps.c_str());
@@ -1459,6 +1466,22 @@ int main()
 		chest = glm::scale(chest, glm::vec3(0.2f));
 		staticShader.setMat4("model", chest);
 		cofre.Draw(staticShader);
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Banca
+		// -------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 0.0f, 100.0f));
+		model = glm::scale(model, glm::vec3(0.3f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		banca1.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 0.0f, -100.0f));
+		model = glm::scale(model, glm::vec3(0.3f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		banca1.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Octopus
