@@ -178,11 +178,7 @@ float	pez1X = 66.0f,
 		torX = -43.0f,
 		torY = 30.0f,
 		torZ = 25.0f,
-		torR = 0.0f,
-
-		carX = -300.0f,
-		carY = 19.0f,
-		carZ = 0.0f;
+		torR = 0.0f;
 
 float	posx = 0.0f,
 		posy = 0.0f,
@@ -237,7 +233,7 @@ float	cangrejoX = 63.0f,
 		cangrejoY = 9.0f,
 		cangrejoZ = -226.0f,
 		cofreX = -19.0f,
-		cofreY = -1.0f,
+		cofreY = 0.0f,
 		cofreZ = -60.0f,
 		cangrejoR = -93.0f,
 		cangrejoR2 = 2.0f,
@@ -873,7 +869,7 @@ int main()
 	Model cangrejoI("resources/objects/ObjetosA/Krabs/PataI.obj");
 	Model cangrejoMD("resources/objects/ObjetosA/Krabs/ManoD.obj");
 	Model cangrejoMI("resources/objects/ObjetosA/Krabs/ManoI.obj");
-	Model cofre("resources/objects/ObjetosA/Krabs/Chest.obj");
+	Model cofre("resources/objects/ObjetosL/Cofre/cofre.obj");
 
 	//pulpo
 	Model octoT("resources/objects/ObjetosA/pulpo/Torso.obj");
@@ -1462,13 +1458,13 @@ int main()
 		cangrejoI.Draw(staticShader);
 
 		chest = glm::translate(chest, glm::vec3(cofreX, cofreY, cofreZ));
-		chest = glm::rotate(chest, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		chest = glm::scale(chest, glm::vec3(0.2f));
+		chest = glm::rotate(chest, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		chest = glm::scale(chest, glm::vec3(1.0f));
 		staticShader.setMat4("model", chest);
 		cofre.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
-		// Banca
+		// Bancas
 		// -------------------------------------------------------------------------------------------------------------------------
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 0.0f, 100.0f));
@@ -1478,6 +1474,18 @@ int main()
 		banca1.Draw(staticShader);
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 0.0f, -100.0f));
+		model = glm::scale(model, glm::vec3(0.3f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		banca1.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 0.0f, 280.0f));
+		model = glm::scale(model, glm::vec3(0.3f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		banca1.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 0.0f, -310.0f));
 		model = glm::scale(model, glm::vec3(0.3f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
