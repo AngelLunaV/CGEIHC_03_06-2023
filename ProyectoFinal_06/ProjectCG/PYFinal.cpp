@@ -2,7 +2,9 @@
 /* ----------------  Proyecto Final             -----------*/
 /*-----------------    2023-1   ---------------------------*/
 /*------------- Alumno: Luna Villaseñor Angel David -------*/
-/*------------- No. Cuenta: 315272244       ---------------*/
+/*------------- Alumno: Aguirre Ramírez Leonardo -------*/
+/*------------- Alumno: Montiel Moreno Oscar -------*/
+/*------------- Equipo 6 ---------------*/
 #include <Windows.h>
 
 #include <glad/glad.h>
