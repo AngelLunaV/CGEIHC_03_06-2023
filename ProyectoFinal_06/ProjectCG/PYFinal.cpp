@@ -78,7 +78,8 @@ int		estado = 0,
 		estadopez = 0,
 		estadopez2 = 0,
 		estadopez3 = 0,
-		estadoTortuga = 0;
+		estadoTortuga = 0,
+		estadoAzul = 0;
 
 bool	animacion = false,
 		recorrido1 = true,
@@ -403,7 +404,7 @@ void ambientmusic()
 {
 	if (sound) 
 	{
-		bool played = PlaySound(L"ambient.wav", NULL, SND_LOOP | SND_ASYNC);
+		bool played = PlaySound(L"BackAudio.wav", NULL, SND_LOOP | SND_ASYNC);
 		sound = false;
 	}
 	
@@ -757,6 +758,44 @@ void animate(void)
 			estadoTortuga = 0;
 		}
 	}
+
+	if (estadoAzul == 0)
+	{
+		pezAzulZ += 0.2f;
+		pezAzulR = 0.0f;
+		pezAzul2Z -= 0.1f;
+		pezAzul2R = 180.0f;
+		pezColoresZ -= 0.1;
+		pezColoresR = 180.0f;
+		pezYellow2Z -= 0.1;
+		pezYellow2R = 180.0f;
+		pezYellowR = 180.0f;
+		pezOrangeR = 0.0f;
+		if (pezAzulZ >= 82.0f)
+		{
+			estadoAzul = 1;
+		}
+	}
+
+	if (estadoAzul == 1)
+	{
+		pezAzulZ -= 0.2f;
+		pezAzulR = 180.0f;
+		pezAzul2Z += 0.1f;
+		pezAzul2R = 0.0f;
+		pezColoresZ += 0.1;
+		pezColoresR = 0.0f;
+		pezYellow2Z += 0.1;
+		pezYellow2R = 0.0f;
+		pezYellowR = 0.0f;
+		pezOrangeR = 180.0f;
+		if (pezAzulZ <= 21.0f)
+		{
+			estadoAzul = 0;
+		}
+	}
+
+	
 }
 
 void getResolution()
@@ -1231,39 +1270,39 @@ int main()
 		animShader.setMat4("model", model);
 		pez4.Draw(animShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezAzulX, pezAzulY, pezAzulZ)); // translate it down so it's at the center of the scene
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezAzulX,pezAzulY, pezAzulZ)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(pezAzulR), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
 		pezAzul.Draw(animShader);
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezAzul2X, pezAzul2Y, pezAzul2Z)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(pezAzul2R), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
 		pezAzul2.Draw(animShader);
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezColoresX, pezColoresY, pezColoresZ)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(pezColoresR), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
 		pezColores.Draw(animShader);
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezOrangeX, pezOrangeY, pezOrangeZ)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(pezOrangeR), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
 		pezOrange.Draw(animShader);
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezYellowX, pezYellowY, pezYellowZ)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(pezYellowR), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
 		pezYellow.Draw(animShader);
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(pezYellow2X, pezYellow2Y, pezYellow2Z)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(pezYellow2R), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
 		pezYellow2.Draw(animShader);
 
@@ -1302,6 +1341,45 @@ int main()
 		model = glm::rotate(model, glm::radians(torR), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
 		tortuga.Draw(animShader);
+
+		//------------------------------------------ Peces 2a pecera -----------------------------------------//
+		
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(60.0f, 20.0f, 50.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		pezAzul.Draw(animShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(60.0f, 10.0f, -10.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		pezAzul2.Draw(animShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(60.0f, 40.0f, 30.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		pezColores.Draw(animShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(60.0f, 50.0f, -100.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		pezOrange.Draw(animShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(80.0f, 10.0f, -100.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		pezYellow.Draw(animShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(60.0f, 30.0f, -21.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(pez5R), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		pezYellow2.Draw(animShader);
+
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -1496,7 +1574,9 @@ int main()
 		staticShader.setMat4("model", model);
 		banca1.Draw(staticShader);
 
-		//Carrito de comida
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Carrito de comida
+		// -------------------------------------------------------------------------------------------------------------------------
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(250.0f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.5f));
