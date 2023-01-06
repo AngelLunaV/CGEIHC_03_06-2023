@@ -404,7 +404,7 @@ void ambientmusic()
 {
 	if (sound) 
 	{
-		bool played = PlaySound(L"BackAudio.wav", NULL, SND_LOOP | SND_ASYNC);
+		bool played = PlaySound(L"ambient.wav", NULL, SND_LOOP | SND_ASYNC);
 		sound = false;
 	}
 	
