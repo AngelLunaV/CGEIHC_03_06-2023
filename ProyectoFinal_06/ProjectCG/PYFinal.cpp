@@ -1,4 +1,4 @@
-﻿/*---------------------------------------------------------*/
+/*---------------------------------------------------------*/
 /* ----------------  Proyecto Final             -----------*/
 /*-----------------    2023-1   ---------------------------*/
 /*------------- Alumno: Luna Villaseñor Angel David -------*/
@@ -283,6 +283,27 @@ float	pulpoXInc = 0.0f,
 		ten7Inc = 0.0f,
 		ten8Inc = 0.0f;
 
+//Persona aterrada
+bool	animacion2_JCA = false;//La utilizo para animación de la persona asustada
+
+bool	animaAtaque = false;
+
+float	escalaPersonaAterrada_JCA = 0.2f;
+float	orientaInicialPersonaAterrada_JCA = 90.0f;
+float	posPersonaAterrada_JCA_x = -4.0f,
+posPersonaAterrada_JCA_y = 0.0f,
+posPersonaAterrada_JCA_z = -20.0f;
+
+float	movPersonaAterrada_JCA_x = 0.0f,
+movPersonaAterrada_JCA_y = 0.0f,
+movPersonaAterrada_JCA_z = 0.0f,
+orientaPersonaAterrada_JCA = 0.0f;
+
+float	miVariable1_JCA = 0.0f;
+
+bool	recorrido0_PA_JCA = true,
+recorrido1_PA_JCA = false,
+recorrido2_PA_JCA = false;
 
 //Keyframes (Manipulación y dibujo)
 
@@ -795,6 +816,50 @@ void animate(void)
 		}
 	}
 
+	if (animaAtaque)
+	{
+		if (recorrido0_PA_JCA) {
+			movPersonaAterrada_JCA_x += 0.5f;
+			orientaPersonaAterrada_JCA = 90.0f;
+			if (movPersonaAterrada_JCA_x >= 50.0f) {
+				recorrido0_PA_JCA = false;
+				recorrido1_PA_JCA = true;
+				miVariable1_JCA = 0.0f;
+				//movPersonaAterrada_JCA_x = 0.0f;
+			}
+		}
+		if (recorrido1_PA_JCA) {
+
+			movPersonaAterrada_JCA_x = 50.0f * cos(miVariable1_JCA);//sqrt( 1 - pow(movPersonaAterrada_JCA_z,2) );
+			movPersonaAterrada_JCA_z = 50.0f * sin(miVariable1_JCA);
+			miVariable1_JCA += 0.02f;
+			//orientaPersonaAterrada_JCA = 0.0f - (miVariable1 * 30.0);
+
+			if (miVariable1_JCA <= 0.5f) {
+				orientaPersonaAterrada_JCA = 0.0f;
+			}
+			if (miVariable1_JCA > 0.5f && miVariable1_JCA <= 2.0f) {
+				orientaPersonaAterrada_JCA = -90.0f;
+			}
+			if (miVariable1_JCA > 2.0f && miVariable1_JCA <= 4.0f) {
+				orientaPersonaAterrada_JCA = -180.0f;
+			}
+			if (miVariable1_JCA > 4.0f && miVariable1_JCA <= 5.2f) {
+				orientaPersonaAterrada_JCA = -270.0f;
+			}
+			if (miVariable1_JCA > 5.2f && miVariable1_JCA <= 7.0f) {
+				orientaPersonaAterrada_JCA = 0.0f;
+			}
+
+			if (miVariable1_JCA > 7.0f) {
+				recorrido0_PA_JCA = true;
+				recorrido1_PA_JCA = false;
+				movPersonaAterrada_JCA_x = 0.0f;
+				movPersonaAterrada_JCA_z = 0.0f;
+			}
+		}
+	}
+
 	
 }
 
@@ -956,6 +1021,20 @@ int main()
 
 	ModelAnim pezYellow2("resources/objects/ObjetosL/Fish_yellow_2.fbx");
 	pezYellow2.initShaders(animShader.ID);
+
+	//Persona Aterrada
+
+	ModelAnim PersonaAterradaJCA("resources/objects/ObjetosO/PersonaAterrada/Terrified.dae");
+	PersonaAterradaJCA.initShaders(animShader.ID);
+
+	//ModelAnim PersonaCorriendoJCA("resources/objects/ObjetosO/PersonaCorriendo/GoofyRunning.dae");
+	//PersonaCorriendoJCA.initShaders(animShader.ID);
+
+	//Carrito de Helados
+	Model carritoHelados("resources/objects/ObjetosO/CarritoHelados/CarritoHelados.obj");
+	//Puesto de comida
+	Model puesto("resources/objects/ObjetosO/Puesto/Coffee Shop.obj");
+
 
 	//Banca
 	Model banca1("resources/objects/ObjetosA/Banca/banca.obj");
@@ -1381,6 +1460,19 @@ int main()
 		pezYellow2.Draw(animShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
+		// Tercer Personaje Animacion
+		// -------------------------------------------------------------------------------------------------------------------------
+		//Animación para persona que se asusta y corre
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(posPersonaAterrada_JCA_x + movPersonaAterrada_JCA_x, posPersonaAterrada_JCA_y + movPersonaAterrada_JCA_y, posPersonaAterrada_JCA_z + movPersonaAterrada_JCA_z)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(escalaPersonaAterrada_JCA));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(orientaInicialPersonaAterrada_JCA + orientaPersonaAterrada_JCA), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		PersonaAterradaJCA.Draw(animShader);
+
+		
+		
+
+		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario
 		// -------------------------------------------------------------------------------------------------------------------------
 		staticShader.use();
@@ -1442,6 +1534,8 @@ int main()
 		model = glm::scale(model, glm::vec3(0.2f));
 		staticShader.setMat4("model", model);
 		peceraT2.Draw(staticShader);
+
+
 		
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Shark
@@ -1588,6 +1682,21 @@ int main()
 		staticShader.setMat4("model", model);
 		carrito.Draw(staticShader);
 
+		//Carrito de Helados
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-54.0f, 0.0f, -80.0f));
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.48f));
+		staticShader.setMat4("model", model);
+		carritoHelados.Draw(staticShader);
+
+
+		//Puesto
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, 0.0f, -400.0f));
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f));
+		staticShader.setMat4("model", model);
+		puesto.Draw(staticShader);
+
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Octopus
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -1702,6 +1811,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
 	{
+
 		if (play == false && (FrameIndex > 1))
 		{
 			std::cout << "Play animation" << std::endl;
